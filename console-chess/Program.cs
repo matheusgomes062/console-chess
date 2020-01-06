@@ -1,4 +1,5 @@
 ﻿using System;
+using console_chess.board;
 
 namespace console_chess
 {
