@@ -18,5 +18,6 @@ namespace console_chess.board
             this.color = color;
             this.noMvmt = 0;
         }
+
     }
 }
