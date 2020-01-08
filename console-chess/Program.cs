@@ -10,12 +10,9 @@ namespace console_chess
         {
             try
             {
+                ChessMatch match = new ChessMatch();
 
-                Board board = new Board(8, 8);
-
-                board.putPiece(new Tower(board, Color.Black), new Position(0, 0));
-
-                Screen.printBoard(board);
+                Screen.printBoard(match.board);
             }
             catch (boardException e)
             {

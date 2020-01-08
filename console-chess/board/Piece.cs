@@ -8,6 +8,8 @@ namespace console_chess.board
     {
         public Position position { get; set; }
         public Color color { get; protected set; }
+
+        //noMvmt = numberOfMovements
         public int noMvmt { get; protected set; }
         public Board board { get; protected set; }
 
@@ -19,5 +21,10 @@ namespace console_chess.board
             this.noMvmt = 0;
         }
 
+        public void incrementQtyMvmt()
+        {
+            noMvmt++;
+
+        }
     }
 }
