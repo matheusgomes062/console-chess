@@ -11,7 +11,7 @@ namespace console_chess
         {
             for (int i = 0; i < board.rows; i++)
             {
-                for (int j = 0; j < board.columns)
+                for (int j = 0; j < board.columns; j++)
                 {
                     if (board.piece(i, j) == null)
                     {
