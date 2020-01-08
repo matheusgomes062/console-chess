@@ -21,10 +21,42 @@ namespace console_chess.board
             return pieces[row, column];
         }
 
+        public Piece piece(Position pos)
+        {
+            return pieces[pos.row, pos.column];
+        }
+
+        public bool hasPiece(Position pos)
+        {
+            validPosition(pos);
+            return piece(pos) != null;
+        }
+
         public void putPiece(Piece p, Position pos)
         {
+            if(hasPiece(pos))
+            {
+                throw new boardException("There's a piece in this position!");
+            }
             pieces[pos.row, pos.column] = p;
             p.position = pos;
+        }
+
+        public bool validPosition(Position pos)
+        {
+            if (pos.row < 0 || pos.row >= rows || pos.column < 0 || pos.column >= columns)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void positionValidate(Position pos)
+        {
+            if(!validPosition(pos))
+            {
+                throw new boardException("Invalid Position!");
+            }
         }
     }
 }
