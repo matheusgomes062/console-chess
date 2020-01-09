@@ -4,7 +4,7 @@ using System.Text;
 
 namespace console_chess.board
 {
-    class Piece
+    abstract class Piece
     {
         public Position position { get; set; }
         public Color color { get; protected set; }
@@ -26,5 +26,33 @@ namespace console_chess.board
             noMvmt++;
 
         }
+        public void decrementQtyMvmt()
+        {
+            noMvmt++;
+
+        }
+
+        public bool hasPossibleMoves()
+        {
+            bool[,] mat = possibleMoves();
+            for (int i = 0; i < board.rows; i++)
+            {
+                for (int j = 0; j < board.columns; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool possibleMove(Position pos)
+        {
+            return possibleMoves()[pos.row, pos.column];
+        }
+
+        public abstract bool[,] possibleMoves();
     }
 }

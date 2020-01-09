@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using console_chess.board;
 
-namespace console_chess.board.chess
+namespace console_chess.chess
 {
     class ChessPosition
     {
