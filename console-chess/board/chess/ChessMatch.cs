@@ -9,6 +9,7 @@ namespace console_chess.board.chess
         public Board board { get; private set; }
         private int round;
         private Color thisPlayer;
+        //teste
 
         public ChessMatch()
         {
