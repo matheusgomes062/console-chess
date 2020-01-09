@@ -14,21 +14,35 @@ namespace console_chess
 
                 while (!match.finished)
                 {
-                    Console.Clear();
-                    Screen.printBoard(match.board);
+                    try
+                    {
 
-                    Console.Write("\nOrigem: ");
-                    Position from = Screen.readChessPosition().toPosition();
+                        Console.Clear();
+                        Screen.printBoard(match.board);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + match.round);
+                        Console.WriteLine("Aguardando jogada: " + match.thisPlayer);
 
-                    bool[,] possiblePositions = match.board.piece(from).possibleMoves();
+                        Console.Write("\nOrigem: ");
+                        Position from = Screen.readChessPosition().toPosition();
+                        match.validateOriginPosition(from);
 
-                    Console.Clear();
-                    Screen.printBoard(match.board, possiblePositions);
+                        bool[,] possiblePositions = match.board.piece(from).possibleMoves();
 
-                    Console.Write("Destino: ");
-                    Position to = Screen.readChessPosition().toPosition();
+                        Console.Clear();
+                        Screen.printBoard(match.board, possiblePositions);
 
-                    match.executeMovement(from, to);
+                        Console.Write("Destino: ");
+                        Position to = Screen.readChessPosition().toPosition();
+                        match.validateDestination(from, to);
+
+                        match.makeAMove(from, to);
+                    }
+                    catch (boardException e) 
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
 
                 Screen.printBoard(match.board);
