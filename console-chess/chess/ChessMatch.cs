@@ -20,7 +20,7 @@ namespace console_chess.chess
         {
             board = new Board(8, 8);
             round = 1;
-            thisPlayer = Color.White;
+            thisPlayer = Color.Branca;
             finished = false;
             checkMate = false;
             vulnerableEnPassant = null;
@@ -66,7 +66,7 @@ namespace console_chess.chess
                 if (from.column != to.column && capturedPiece == null)
                 {
                     Position posP;
-                    if (p.color == Color.White)
+                    if (p.color == Color.Branca)
                     {
                         posP = new Position(to.row + 1, to.column);
                     }
@@ -119,7 +119,7 @@ namespace console_chess.chess
                 if (from.column != to.column && capturedPiece == vulnerableEnPassant)
                 {
                     Position posP;
-                    if (p.color == Color.White)
+                    if (p.color == Color.Branca)
                     {
                         posP = new Position(to.row + 1, to.column);
                     }
@@ -168,7 +168,7 @@ namespace console_chess.chess
             // #jogadaespecial promocao
             if (p is Pawn)
             {
-                if ((p.color == Color.White && to.row == 0) || (p.color == Color.Black && to.row == 7))
+                if ((p.color == Color.Branca && to.row == 0) || (p.color == Color.Preta && to.row == 7))
                 {
                     p = board.removePiece(to);
                     pieces.Remove(p);
@@ -205,13 +205,13 @@ namespace console_chess.chess
 
         private Color adversary(Color color)
         {
-            if (color == Color.White)
+            if (color == Color.Branca)
             {
-                return Color.Black;
+                return Color.Preta;
             }
             else
             {
-                return Color.White;
+                return Color.Branca;
             }
         }
 
@@ -286,13 +286,13 @@ namespace console_chess.chess
 
         private void changePlayer()
         {
-            if (thisPlayer == Color.White)
+            if (thisPlayer == Color.Branca)
             {
-                thisPlayer = Color.Black;
+                thisPlayer = Color.Preta;
             }
             else
             {
-                thisPlayer = Color.White;
+                thisPlayer = Color.Branca;
             }
         }
 
@@ -335,39 +335,39 @@ namespace console_chess.chess
 
         private void putPieces()
         {
-            putNewPiece('a', 1, new Tower(board, Color.White));
-            putNewPiece('b', 1, new Horse(board, Color.White));
-            putNewPiece('c', 1, new Bishop(board, Color.White));
-            putNewPiece('d', 1, new Queen(board, Color.White));
-            putNewPiece('e', 1, new King(board, Color.White, this));
-            putNewPiece('f', 1, new Bishop(board, Color.White));
-            putNewPiece('g', 1, new Horse(board, Color.White));
-            putNewPiece('h', 1, new Tower(board, Color.White));
-            putNewPiece('a', 2, new Pawn(board, Color.White, this));
-            putNewPiece('b', 2, new Pawn(board, Color.White, this));
-            putNewPiece('c', 2, new Pawn(board, Color.White, this));
-            putNewPiece('d', 2, new Pawn(board, Color.White, this));
-            putNewPiece('e', 2, new Pawn(board, Color.White, this));
-            putNewPiece('f', 2, new Pawn(board, Color.White, this));
-            putNewPiece('g', 2, new Pawn(board, Color.White, this));
-            putNewPiece('h', 2, new Pawn(board, Color.White, this));
+            putNewPiece('a', 1, new Tower(board, Color.Branca));
+            putNewPiece('b', 1, new Horse(board, Color.Branca));
+            putNewPiece('c', 1, new Bishop(board, Color.Branca));
+            putNewPiece('d', 1, new Queen(board, Color.Branca));
+            putNewPiece('e', 1, new King(board, Color.Branca, this));
+            putNewPiece('f', 1, new Bishop(board, Color.Branca));
+            putNewPiece('g', 1, new Horse(board, Color.Branca));
+            putNewPiece('h', 1, new Tower(board, Color.Branca));
+            putNewPiece('a', 2, new Pawn(board, Color.Branca, this));
+            putNewPiece('b', 2, new Pawn(board, Color.Branca, this));
+            putNewPiece('c', 2, new Pawn(board, Color.Branca, this));
+            putNewPiece('d', 2, new Pawn(board, Color.Branca, this));
+            putNewPiece('e', 2, new Pawn(board, Color.Branca, this));
+            putNewPiece('f', 2, new Pawn(board, Color.Branca, this));
+            putNewPiece('g', 2, new Pawn(board, Color.Branca, this));
+            putNewPiece('h', 2, new Pawn(board, Color.Branca, this));
 
-            putNewPiece('a', 8, new Tower(board, Color.Black));
-            putNewPiece('b', 8, new Horse(board, Color.Black));
-            putNewPiece('c', 8, new Bishop(board, Color.Black));
-            putNewPiece('d', 8, new Queen(board, Color.Black));
-            putNewPiece('e', 8, new King(board, Color.Black, this));
-            putNewPiece('f', 8, new Bishop(board, Color.Black));
-            putNewPiece('g', 8, new Horse(board, Color.Black));
-            putNewPiece('h', 8, new Tower(board, Color.Black));
-            putNewPiece('a', 7, new Pawn(board, Color.Black, this));
-            putNewPiece('b', 7, new Pawn(board, Color.Black, this));
-            putNewPiece('c', 7, new Pawn(board, Color.Black, this));
-            putNewPiece('d', 7, new Pawn(board, Color.Black, this));
-            putNewPiece('e', 7, new Pawn(board, Color.Black, this));
-            putNewPiece('f', 7, new Pawn(board, Color.Black, this));
-            putNewPiece('g', 7, new Pawn(board, Color.Black, this));
-            putNewPiece('h', 7, new Pawn(board, Color.Black, this));
+            putNewPiece('a', 8, new Tower(board, Color.Preta));
+            putNewPiece('b', 8, new Horse(board, Color.Preta));
+            putNewPiece('c', 8, new Bishop(board, Color.Preta));
+            putNewPiece('d', 8, new Queen(board, Color.Preta));
+            putNewPiece('e', 8, new King(board, Color.Preta, this));
+            putNewPiece('f', 8, new Bishop(board, Color.Preta));
+            putNewPiece('g', 8, new Horse(board, Color.Preta));
+            putNewPiece('h', 8, new Tower(board, Color.Preta));
+            putNewPiece('a', 7, new Pawn(board, Color.Preta, this));
+            putNewPiece('b', 7, new Pawn(board, Color.Preta, this));
+            putNewPiece('c', 7, new Pawn(board, Color.Preta, this));
+            putNewPiece('d', 7, new Pawn(board, Color.Preta, this));
+            putNewPiece('e', 7, new Pawn(board, Color.Preta, this));
+            putNewPiece('f', 7, new Pawn(board, Color.Preta, this));
+            putNewPiece('g', 7, new Pawn(board, Color.Preta, this));
+            putNewPiece('h', 7, new Pawn(board, Color.Preta, this));
         }
     }
 }

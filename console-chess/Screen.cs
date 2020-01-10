@@ -34,11 +34,11 @@ namespace console_chess
         {
             Console.WriteLine("Peças capturadas: ");
             Console.Write("Brancas: ");
-            printGroup(match.capturedPieces(Color.White));
+            printGroup(match.capturedPieces(Color.Branca));
             Console.Write("\nPretas: ");
             ConsoleColor aux = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            printGroup(match.capturedPieces(Color.Black));
+            printGroup(match.capturedPieces(Color.Preta));
             Console.ForegroundColor = aux;
             Console.WriteLine();
         }
@@ -108,7 +108,7 @@ namespace console_chess
             }
             else
             {
-                if (piece.color == Color.White)
+                if (piece.color == Color.Branca)
                 {
                     Console.Write(piece);
                 }

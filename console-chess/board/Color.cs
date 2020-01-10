@@ -6,7 +6,7 @@ namespace console_chess.board
 {
     enum Color
     {
-        White,
-        Black
+        Branca,
+        Preta
     }
 }

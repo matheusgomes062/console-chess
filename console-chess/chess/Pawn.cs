@@ -42,7 +42,7 @@ namespace console_chess.chess
 
             Position pos = new Position(0, 0);
 
-            if (color == Color.White)
+            if (color == Color.Branca)
             {
                 pos.defineValues(position.row - 1, position.column);
                 if (board.validPosition(pos) && free(pos))
