@@ -7,7 +7,7 @@ namespace console_chess.chess
 {
     class King : Piece
     {
-        public King(Board board, Color color) : base(board, color)
+        public King(Board board, Color color, ChessMatch match) : base(board, color)
         {
 
         }

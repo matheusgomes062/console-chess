@@ -8,7 +8,7 @@ namespace console_chess.chess
     class Pawn : Piece
     {
 
-        public Pawn(Board board, Color color) : base(board, color)
+        public Pawn(Board board, Color color, ChessMatch match) : base(board, color)
         {
         }
 
@@ -21,6 +21,17 @@ namespace console_chess.chess
         {
             Piece p = board.piece(pos);
             return p == null || p.color != color;
+        }
+
+        private bool hasEnemy(Position pos)
+        {
+            Piece p = board.piece(pos);
+            return p != null && p.color != color;
+        }
+
+        private bool free(Position pos)
+        {
+            return board.piece(pos) == null;
         }
 
         public override bool[,] possibleMoves()
@@ -38,7 +49,7 @@ namespace console_chess.chess
                 }
                 pos.defineValues(position.row - 2, position.column);
                 Position p2 = new Position(position.row - 1, position.column);
-                if (board.validPosition(p2) && free(p2) && board.validPosition(pos) && free(pos) && qteMovimentos == 0)
+                if (board.validPosition(p2) && free(p2) && board.validPosition(pos) && free(pos) && noMvmt == 0)
                 {
                     mat[pos.row, pos.column] = true;
                 }
@@ -54,19 +65,19 @@ namespace console_chess.chess
                 }
 
                 // #jogadaespecial en passant
-                if (position.row == 3)
-                {
-                    Position esquerda = new Position(position.row, position.column - 1);
-                    if (board.validPosition(esquerda) && hasEnemy(esquerda) && board.piece(esquerda) == match.vulneravelEnPassant)
-                    {
-                        mat[esquerda.row - 1, esquerda.column] = true;
-                    }
-                    Position direita = new Position(position.row, position.column + 1);
-                    if (board.validPosition(direita) && hasEnemy(direita) && board.piece(direita) == match.vulneravelEnPassant)
-                    {
-                        mat[direita.row - 1, direita.column] = true;
-                    }
-                }
+                //if (position.row == 3)
+                //{
+                //    Position west = new Position(position.row, position.column - 1);
+                //    if (board.validPosition(west) && hasEnemy(west) && board.piece(west) == match.vulneravelEnPassant)
+                //    {
+                //        mat[west.row - 1, west.column] = true;
+                //    }
+                //    Position east = new Position(position.row, position.column + 1);
+                //    if (board.validPosition(east) && hasEnemy(east) && board.piece(east) == match.vulneravelEnPassant)
+                //    {
+                //        mat[east.row - 1, east.column] = true;
+                //    }
+                //}
             }
             else
             {
@@ -77,7 +88,7 @@ namespace console_chess.chess
                 }
                 pos.defineValues(position.row + 2, position.column);
                 Position p2 = new Position(position.row + 1, position.column);
-                if (board.validPosition(p2) && free(p2) && board.validPosition(pos) && free(pos) && qteMovimentos == 0)
+                if (board.validPosition(p2) && free(p2) && board.validPosition(pos) && free(pos) && noMvmt == 0)
                 {
                     mat[pos.row, pos.column] = true;
                 }
@@ -92,20 +103,20 @@ namespace console_chess.chess
                     mat[pos.row, pos.column] = true;
                 }
 
-                // #jogadaespecial en passant
-                if (position.row == 4)
-                {
-                    Position esquerda = new Position(position.row, position.column - 1);
-                    if (board.validPosition(esquerda) && hasEnemy(esquerda) && board.piece(esquerda) == match.vulneravelEnPassant)
-                    {
-                        mat[esquerda.row + 1, esquerda.column] = true;
-                    }
-                    Position direita = new Position(position.row, position.column + 1);
-                    if (board.validPosition(direita) && hasEnemy(direita) && board.piece(direita) == match.vulneravelEnPassant)
-                    {
-                        mat[direita.row + 1, direita.column] = true;
-                    }
-                }
+                //// #jogadaespecial en passant
+                //if (position.row == 4)
+                //{
+                //    Position west = new Position(position.row, position.column - 1);
+                //    if (board.validPosition(west) && hasEnemy(west) && board.piece(west) == match.vulneravelEnPassant)
+                //    {
+                //        mat[west.row + 1, west.column] = true;
+                //    }
+                //    Position east = new Position(position.row, position.column + 1);
+                //    if (board.validPosition(east) && hasEnemy(east) && board.piece(east) == match.vulneravelEnPassant)
+                //    {
+                //        mat[east.row + 1, east.column] = true;
+                //    }
+                //}
             }
 
             return mat;
