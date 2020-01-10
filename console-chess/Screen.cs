@@ -8,6 +8,50 @@ namespace console_chess
 {
     class Screen
     {
+        public static void printMatch(ChessMatch match)
+        {
+            printBoard(match.board);
+            Console.WriteLine();
+            printCapturedPieces(match);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + match.round);
+            if (!match.finished)
+            {
+                Console.WriteLine("Aguardando jogada: " + match.thisPlayer);
+                if (match.checkMate)
+                {
+                    Console.WriteLine("XEQUE!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + match.thisPlayer);
+            }
+        }
+
+        public static void printCapturedPieces(ChessMatch match)
+        {
+            Console.WriteLine("Peças capturadas: ");
+            Console.Write("Brancas: ");
+            printGroup(match.capturedPieces(Color.White));
+            Console.Write("\nPretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            printGroup(match.capturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void printGroup(HashSet<Piece> group)
+        {
+            Console.Write("[");
+            foreach (Piece x in group)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
         public static void printBoard(Board board)
         {
             for (int i = 0; i < board.rows; i++)
@@ -31,7 +75,7 @@ namespace console_chess
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < board.columns; j++)
                 {
-                    if(possiblePositions[i, j])
+                    if (possiblePositions[i, j])
                     {
                         Console.BackgroundColor = alteredBg;
                     }

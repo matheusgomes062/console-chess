@@ -18,10 +18,7 @@ namespace console_chess
                     {
 
                         Console.Clear();
-                        Screen.printBoard(match.board);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + match.round);
-                        Console.WriteLine("Aguardando jogada: " + match.thisPlayer);
+                        Screen.printMatch(match);
 
                         Console.Write("\nOrigem: ");
                         Position from = Screen.readChessPosition().toPosition();
@@ -44,7 +41,7 @@ namespace console_chess
                         Console.ReadLine();
                     }
                 }
-
+                Console.Clear();
                 Screen.printBoard(match.board);
             }
             catch (boardException e)
