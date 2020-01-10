@@ -7,9 +7,11 @@ namespace console_chess.chess
 {
     class Pawn : Piece
     {
+        private ChessMatch match;
 
         public Pawn(Board board, Color color, ChessMatch match) : base(board, color)
         {
+            this.match = match;
         }
 
         public override string ToString()
@@ -64,20 +66,20 @@ namespace console_chess.chess
                     mat[pos.row, pos.column] = true;
                 }
 
-                // #jogadaespecial en passant
-                //if (position.row == 3)
-                //{
-                //    Position west = new Position(position.row, position.column - 1);
-                //    if (board.validPosition(west) && hasEnemy(west) && board.piece(west) == match.vulneravelEnPassant)
-                //    {
-                //        mat[west.row - 1, west.column] = true;
-                //    }
-                //    Position east = new Position(position.row, position.column + 1);
-                //    if (board.validPosition(east) && hasEnemy(east) && board.piece(east) == match.vulneravelEnPassant)
-                //    {
-                //        mat[east.row - 1, east.column] = true;
-                //    }
-                //}
+                // # jogadaespecial en passant
+                if (position.row == 3)
+                {
+                    Position west = new Position(position.row, position.column - 1);
+                    if (board.validPosition(west) && hasEnemy(west) && board.piece(west) == match.vulnerableEnPassant)
+                    {
+                        mat[west.row - 1, west.column] = true;
+                    }
+                    Position east = new Position(position.row, position.column + 1);
+                    if (board.validPosition(east) && hasEnemy(east) && board.piece(east) == match.vulnerableEnPassant)
+                    {
+                        mat[east.row - 1, east.column] = true;
+                    }
+                }
             }
             else
             {
@@ -103,20 +105,20 @@ namespace console_chess.chess
                     mat[pos.row, pos.column] = true;
                 }
 
-                //// #jogadaespecial en passant
-                //if (position.row == 4)
-                //{
-                //    Position west = new Position(position.row, position.column - 1);
-                //    if (board.validPosition(west) && hasEnemy(west) && board.piece(west) == match.vulneravelEnPassant)
-                //    {
-                //        mat[west.row + 1, west.column] = true;
-                //    }
-                //    Position east = new Position(position.row, position.column + 1);
-                //    if (board.validPosition(east) && hasEnemy(east) && board.piece(east) == match.vulneravelEnPassant)
-                //    {
-                //        mat[east.row + 1, east.column] = true;
-                //    }
-                //}
+                // #jogadaespecial en passant
+                if (position.row == 4)
+                {
+                    Position west = new Position(position.row, position.column - 1);
+                    if (board.validPosition(west) && hasEnemy(west) && board.piece(west) == match.vulnerableEnPassant)
+                    {
+                        mat[west.row + 1, west.column] = true;
+                    }
+                    Position east = new Position(position.row, position.column + 1);
+                    if (board.validPosition(east) && hasEnemy(east) && board.piece(east) == match.vulnerableEnPassant)
+                    {
+                        mat[east.row + 1, east.column] = true;
+                    }
+                }
             }
 
             return mat;
