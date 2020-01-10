@@ -15,7 +15,7 @@ namespace console_chess.chess
 
         public override string ToString()
         {
-            return "R";
+            return "K";
         }
 
         private bool canMove(Position pos)
