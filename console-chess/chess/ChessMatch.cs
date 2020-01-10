@@ -169,7 +169,7 @@ namespace console_chess.chess
 
         public void validateDestination(Position from, Position to)
         {
-            if (!board.piece(from).canMoveTo(to))
+            if (!board.piece(from).possibleMove(to))
             {
                 throw new boardException("Posição de destino inválida!");
             }

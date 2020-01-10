@@ -53,10 +53,10 @@ namespace console_chess.board
             return possibleMoves()[pos.row, pos.column];
         }
 
-        public bool canMoveTo(Position pos)
-        {
-            return possibleMoves()[pos.row, pos.column];
-        }
+        //public bool canMoveTo(Position pos)
+        //{
+        //    return possibleMoves()[pos.row, pos.column];
+        //}
 
         public abstract bool[,] possibleMoves();
     }
