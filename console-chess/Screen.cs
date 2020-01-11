@@ -11,6 +11,7 @@ namespace console_chess
         public static void printMatch(ChessMatch match)
         {
             printBoard(match.board);
+            Console.WriteLine();
             printCapturedPieces(match);
             Console.WriteLine();
             Console.WriteLine("Turno: " + match.round);
